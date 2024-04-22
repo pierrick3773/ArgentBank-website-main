@@ -1,6 +1,6 @@
-import chat from "../assets/img/icon-chat.png";
-import security from "../assets/img/icon-security.png";
-import money from "../assets/img/icon-money.png";
+import chat from "../assets/img/icon-chat.webp";
+import security from "../assets/img/icon-security.webp";
+import money from "../assets/img/icon-money.webp";
 
 const Features = [
   {
