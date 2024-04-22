@@ -3,7 +3,7 @@ export function SignIn() {
     <section className="main bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
-        <p>Sign In</p>
+        <p className="sign-in-title">Sign In</p>
         <form>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
@@ -17,6 +17,11 @@ export function SignIn() {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
+          <input
+            className="sign-in-button"
+            type="submit"
+            value="Sign In"
+          ></input>
         </form>
       </section>
     </section>

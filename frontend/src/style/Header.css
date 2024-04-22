@@ -5,7 +5,10 @@
   align-items: center;
   padding: 5px 20px;
 }
-
+.fa,
+.fa-user-circle {
+  margin-right: 4px;
+}
 .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
