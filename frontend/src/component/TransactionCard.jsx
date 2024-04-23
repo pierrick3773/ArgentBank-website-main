@@ -19,7 +19,7 @@ export function Transaction() {
 
   return (
     <div className="account-container">
-      <h2 class="sr-only">Accounts</h2>
+      <h2 className="sr-only">Accounts</h2>
       {accounts.map((account, index) => (
         <section className="account" key={index}>
           <div className="account-content-wrapper">

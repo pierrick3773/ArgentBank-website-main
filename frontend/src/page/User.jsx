@@ -4,7 +4,7 @@ import { Welcome } from "../component/WelcomeUser";
 
 export function User() {
   return (
-    <div class="main bg-dark">
+    <div className="main bg-dark">
       <Welcome />
       <EditButton />
       <Transaction />
