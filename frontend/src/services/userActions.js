@@ -3,3 +3,7 @@ export const updateUserInput = (input, value) => ({
     payload: { input, value },
   });
   
+  export const toggleEditForm = () => ({
+    type: 'TOGGLE_EDIT_FORM',
+  });
+  

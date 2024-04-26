@@ -1,3 +1,7 @@
+.edit{
+  width: 100%;
+}
+
 .edit-button {
   border-color: #00bc77;
   background-color: #00bc77;
@@ -5,4 +9,41 @@
   font-weight: bold;
   padding: 10px;
   margin-bottom: 2rem;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.inputName {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.inputButton{
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.inputButton button {
+  border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px;
+    margin-bottom: 2rem;
+    gap: 10px;
+}
+
+label{
+  color: white;
+}
+
+input{
+  border-radius: 5px;
+  width: 60px;
 }
