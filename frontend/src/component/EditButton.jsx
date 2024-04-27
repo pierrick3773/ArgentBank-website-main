@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUserInput, toggleEditForm } from '../services/userActions';
+import { updateUserInput, toggleEditForm, updateUsername } from '../services/userActions';
+import { firstName, lastName } from './WelcomeUser.jsx';
+
+let userName = firstName;
 
 export function EditButton() {
   const dispatch = useDispatch();
   const [showInputs, setShowInputs] = useState(false);
-  const { userName, firstName, lastName } = useSelector((state) => state.user.user);
+  const [userFirstName, setUserFirstName] = useState(firstName);
+  const [userLastName, setUserLastName] = useState(lastName);
+  const [userNameValue, setUserNameValue] = useState(userName); // Ajouter l'état pour userName
 
   const handleInputChange = (input, value) => {
+    if (input === 'userName') {
+      dispatch(updateUsername(value));
+    }
     dispatch(updateUserInput(input, value));
   };
+  
 
   const handleToggleEditForm = () => {
     dispatch(toggleEditForm());
@@ -32,26 +41,29 @@ export function EditButton() {
             <input
               type="text"
               id="userName"
-              value={userName}
-              onChange={(e) => handleInputChange('userName', e.target.value)}
+              value={userNameValue} // Utiliser l'état de userNameValue
+              onChange={(e) => setUserNameValue(e.target.value)} // Mettre à jour l'état de userNameValue
             />
+
           </div>
-          <div className='inputContainer'> 
+          <div className='inputContainer'>
             <label htmlFor="firstName">First name:</label>
-            <input
+            <input className='readOnly'
               type="text"
               id="firstName"
-              value={firstName}
-              onChange={(e) => handleInputChange('firstName', e.target.value)}
+              value={userFirstName}
+              onChange={(e) => setUserFirstName(e.target.value)}
+              readOnly
             />
           </div>
           <div className='inputContainer'>
             <label htmlFor="lastName">Last name:</label>
-            <input
+            <input className='readOnly'
               type="text"
               id="lastName"
-              value={lastName}
-              onChange={(e) => handleInputChange('lastName', e.target.value)}
+              value={userLastName}
+              onChange={(e) => setUserLastName(e.target.value)}
+              readOnly
             />
           </div>
           <div className='inputButton'>

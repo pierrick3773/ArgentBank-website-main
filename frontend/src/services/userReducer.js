@@ -1,30 +1,20 @@
+
+import { updateUsername } from '../services/userActions';
+
 const initialState = {
-  user: {
-    name: '',
-    email: '',
-    // autres propriétés de l'utilisateur
-  },
-  showEditForm: false,
+  userName: '',
 };
 
-const userReducer = (state = initialState, action) => {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
-    case 'UPDATE_USER_INPUT':
+    case updateUsername:
       return {
         ...state,
-        user: {
-          ...state.user,
-          [action.payload.input]: action.payload.value,
-        },
-      };
-    case 'TOGGLE_EDIT_FORM':
-      return {
-        ...state,
-        showEditForm: !state.showEditForm,
+        userName: action.payload,
       };
     default:
       return state;
   }
-};
+}
 
-export default userReducer;
+
