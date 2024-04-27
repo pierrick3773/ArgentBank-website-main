@@ -1,4 +1,5 @@
-const userName = "Charles-Édouard Fifrelin !";
+export const firstName = "tom ";
+export const lastName = "Fifrelin"
 
 export function Welcome() {
   return (
@@ -6,7 +7,7 @@ export function Welcome() {
       <p>
         Welcome back
         <br />
-        {userName}
+        {firstName} {lastName} !
       </p>
     </div>
   );
