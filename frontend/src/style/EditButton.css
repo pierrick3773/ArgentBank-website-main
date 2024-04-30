@@ -39,11 +39,11 @@
     gap: 10px;
 }
 
-label{
+.inputContainer label{
   color: white;
 }
 
-input{
+.inputContainer input{
   border-radius: 5px;
   width: 60px;
 }
