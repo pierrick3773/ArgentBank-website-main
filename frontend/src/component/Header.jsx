@@ -1,10 +1,9 @@
 import argentBankLogo from "../assets/img/argentBankLogo.webp";
 import { NavLink } from "react-router-dom";
-
+import { userName } from "./username";
 // import { User } from "../page/User.jsx";
 
 export function Header() {
-  
   return (
     <header>
       <nav className="main-nav">
@@ -17,7 +16,7 @@ export function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div className="userBlock">
-          <p className="userName"></p>
+          <p className="userName">{userName}</p>
           <NavLink className="main-nav-item" to="/SignIn">
             <i className="fa fa-user-circle"></i>
             Sign In
@@ -25,5 +24,5 @@ export function Header() {
         </div>
       </nav>
     </header>
-  );
+  ); 
 }
