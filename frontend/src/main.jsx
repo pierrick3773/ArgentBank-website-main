@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Provider } from 'react-redux';
-import { store } from "./services/store.js";
+// import { Provider } from 'react-redux';
+// import { store } from "./services/store.js";
 import "./style/Header.css";
 import "./style/Banner.css";
 import "./style/Feature.css";
@@ -19,7 +19,7 @@ import { SignIn } from "./page/SignIn.jsx";
 import { User } from "./page/User";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
+  // <Provider store={store}>
     <BrowserRouter>
       <Header />
       <main>
@@ -31,5 +31,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </main>
       <Footer />
     </BrowserRouter>
-  </Provider>
+  // </Provider>
 );
