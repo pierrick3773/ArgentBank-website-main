@@ -1,54 +1,40 @@
-
-
-
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 export function EditButton() {
-  
+  const [isEditing, setIsEditing] = useState(false);
+  const isLoggedIn = useSelector((state) => state.user.token !== null);
 
+  const handleToggleEditForm = () => {
+    setIsEditing(!isEditing);
+  };
 
   return (
-    <div className='edit'>
-      <button className="edit-button" >
+    <div className="edit">
+      <button className="edit-button" onClick={handleToggleEditForm}>
         Edit Name
       </button>
-      
-        <div className='inputName'>
-          <div className='inputContainer'>
-            <label htmlFor="userName">User name:</label>
-            <input
-              type="text"
-              id="userName"
-              // value={userNameValue} // Utiliser l'état de userNameValue
-              // onChange={(e) => setUserNameValue(e.target.value)} // Mettre à jour l'état de userNameValue
-            />
 
+      {isEditing && isLoggedIn && (
+        <div className="inputName">
+          <div className="inputContainer">
+            <label htmlFor="userName">User name:</label>
+            <input type="text" id="userName" />
           </div>
-          <div className='inputContainer'>
+          <div className="inputContainer">
             <label htmlFor="firstName">First name:</label>
-            <input className='readOnly'
-              type="text"
-              id="firstName"
-              // value={userFirstName}
-              // onChange={(e) => setUserFirstName(e.target.value)}
-              // readOnly
-            />
+            <input className="readOnly" type="text" id="firstName" readOnly />
           </div>
-          <div className='inputContainer'>
+          <div className="inputContainer">
             <label htmlFor="lastName">Last name:</label>
-            <input className='readOnly'
-              type="text"
-              id="lastName"
-              // value={userLastName}
-              // onChange={(e) => setUserLastName(e.target.value)}
-              // readOnly
-            />
+            <input className="readOnly" type="text" id="lastName" readOnly />
           </div>
-          <div className='inputButton'>
-            {/* <button onClick={handleToggleEditForm}>Save</button>
-            <button onClick={handleCancel}>Cancel</button> */}
+          <div className="inputButton">
+            <button>Save</button>
+            <button onClick={handleToggleEditForm}>Cancel</button>
           </div>
         </div>
-      
+      )}
     </div>
   );
 }
