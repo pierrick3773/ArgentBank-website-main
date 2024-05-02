@@ -1,21 +1,27 @@
-
-import { useDispatch } from "react-redux";
-import { logCall } from "../CAllAPI/LogCall"
+import { useDispatch, useSelector } from "react-redux";
+import { logCall } from "../CAllAPI/LogCall";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchUserInfo } from "../CAllAPI/UserInfoCall";
 
 export function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = useSelector((state) => state.user.token);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     dispatch(logCall({ email: username, password }))
       .unwrap()
-      .then(() => navigate("/Profile"));
+      .then((token) => {
+        navigate("/Profile");
+        dispatch(fetchUserInfo(token)).then((data) => {
+          console.log(data); // Affiche les données récupérées dans la console
+        });
+      });
   };
   return (
     <section className="main bg-dark">
