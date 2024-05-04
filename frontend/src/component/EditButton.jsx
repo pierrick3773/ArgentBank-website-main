@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 export function EditButton() {
   const [isEditing, setIsEditing] = useState(false);
   const isLoggedIn = useSelector((state) => state.user.token !== null);
-  const userInfo = useSelector((state) => state.userInfo);
+  // const userInfo = useSelector((state) => state.userInfo);
 
   const handleToggleEditForm = () => {
     setIsEditing(!isEditing);
@@ -16,19 +16,19 @@ export function EditButton() {
         Edit Name
       </button>
 
-      {isEditing && isLoggedIn && userInfo && (
+      {isEditing && isLoggedIn &&  (
         <div className="inputName">
           <div className="inputContainer">
             <label htmlFor="userName">User name:</label>
-            <input type="text" id="userName" defaultValue={userInfo.userName} />
+            <input type="text" id="userName"  />
           </div>
           <div className="inputContainer">
             <label htmlFor="firstName">First name:</label>
-            <input className="readOnly" type="text" id="firstName" defaultValue={userInfo.firstName} readOnly />
+            <input className="readOnly" type="text" id="firstName"  />
           </div>
           <div className="inputContainer">
             <label htmlFor="lastName">Last name:</label>
-            <input className="readOnly" type="text" id="lastName" defaultValue={userInfo.lastName} readOnly />
+            <input className="readOnly" type="text" id="lastName"  />
           </div>
           <div className="inputButton">
             <button>Save</button>
