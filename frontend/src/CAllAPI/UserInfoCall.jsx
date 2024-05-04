@@ -2,7 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const API_BASE_URL_ = "http://localhost:3001/api/v1";
 
-export const fetchUserInfo = createAsyncThunk("userInfo/fetchUserInfo", async (token) => {
+export const fetchUserInfo = createAsyncThunk("userInfo/fetchUserInfo", async () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    throw new Error("Token not found");
+  }
   const response = await fetch(`${API_BASE_URL_}/user/profile`, {
     method: "POST",
     headers: {

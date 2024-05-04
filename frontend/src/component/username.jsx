@@ -1,10 +1,10 @@
-import { firstName } from './WelcomeUser.jsx';
-export let User = firstName;
+// import { firstName } from './WelcomeUser.jsx';
+// export let User = firstName;
 
-export function userName() {
-return (
-    <p className='userName'>
-        {User}
-    </p>
-)
-}
+// export function userName() {
+// return (
+//     <p className='userName'>
+//         {User}
+//     </p>
+// )
+// }
