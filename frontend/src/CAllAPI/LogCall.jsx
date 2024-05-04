@@ -16,7 +16,8 @@ export const logCall = createAsyncThunk("user/login", async (credentials, thunkA
     }
 
     const data = await response.json();
-    localStorage.setItem("token", data.token); // Stocke le jeton dans le stockage local
+    console.log(data)
+    localStorage.setItem("token", data.body.token); // Stocke le jeton dans le stockage local
     return data.token;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
