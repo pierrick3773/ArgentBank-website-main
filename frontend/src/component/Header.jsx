@@ -17,7 +17,7 @@ export function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div className="userBlock">
-        <p className="userName">{userDetails?.userName}</p>
+        <p className="userName">{userDetails?.payload[0].userName}</p>
           
           <NavLink className="main-nav-item" to="/SignIn">
             <i className="fa fa-user-circle"></i>
