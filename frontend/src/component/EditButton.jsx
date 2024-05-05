@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 
 export function EditButton() {
   const [isEditing, setIsEditing] = useState(false);
-  const isLoggedIn = useSelector((state) => state.user.token !== null);
-  // const userInfo = useSelector((state) => state.userInfo);
+  const isLoggedIn = useSelector((state) => state.auth.token !== null);
 
   const handleToggleEditForm = () => {
     setIsEditing(!isEditing);

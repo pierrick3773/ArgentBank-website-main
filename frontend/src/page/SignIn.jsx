@@ -3,13 +3,15 @@ import { logCall } from "../CAllAPI/LogCall";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchUserInfo } from "../CAllAPI/UserInfoCall";
+import { setUserDetails } from "../services/reducer";
 
 export function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.user.token);
+  const token = useSelector((state) => state.auth.token);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +22,9 @@ export function SignIn() {
         navigate("/Profile");
         dispatch(fetchUserInfo(token)).then((data) => {
           console.log(data); // Affiche les données récupérées dans la console
+          dispatch(setUserDetails(data)); // Met à jour l'état Redux avec les informations utilisateur
         });
+        
       });
   };
   return (

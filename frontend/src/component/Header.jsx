@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export function Header() {
-  const userInfo = useSelector((state) => state.userInfo);
-
+  const userDetails = useSelector((state) => state.auth.userDetails);
+  console.log(userDetails);
   return (
     <header>
       <nav className="main-nav">
@@ -17,7 +17,8 @@ export function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div className="userBlock">
-          <p className="userName">{userInfo?.userName}</p>
+        <p className="userName">{userDetails?.userName}</p>
+          
           <NavLink className="main-nav-item" to="/SignIn">
             <i className="fa fa-user-circle"></i>
             Sign In
@@ -27,3 +28,4 @@ export function Header() {
     </header>
   );
 }
+
