@@ -1,3 +1,5 @@
+import { useSelector} from 'react-redux';
+
 export function Transaction() {
   const accounts = [
     {
@@ -16,22 +18,29 @@ export function Transaction() {
       description: "Current Balance",
     },
   ];
-
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  if (!isLoggedIn) {
+    return (
+      ""
+    );
+  }
   return (
-    <div className="account-container">
-      <h2 className="sr-only">Accounts</h2>
-      {accounts.map((account, index) => (
-        <section className="account" key={index}>
-          <div className="account-content-wrapper">
-            <h3 className="account-title">{account.title}</h3>
-            <p className="account-amount">{account.amount}</p>
-            <p className="account-amount-description">{account.description}</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section>
-      ))}
-    </div>
+      
+        <div className="account-container">
+          <h2 className="sr-only">Accounts</h2>
+          {accounts.map((account, index) => (
+            <section className="account" key={index}>
+              <div className="account-content-wrapper">
+                <h3 className="account-title">{account.title}</h3>
+                <p className="account-amount">{account.amount}</p>
+                <p className="account-amount-description">{account.description}</p>
+              </div>
+              <div className="account-content-wrapper cta">
+                <button className="transaction-button">View transactions</button>
+              </div>
+            </section>
+          ))}
+        </div>
+      
   );
 }

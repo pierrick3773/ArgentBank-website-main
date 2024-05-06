@@ -33,8 +33,11 @@ const initialState = {
     setUserDetails: (state, action) => {
       state.userDetails = action.payload;
     },
+    updateUserProfile: (state, action ) => {
+      state.userDetails = action.payload;
+    }
   },
 });
 
-export const { loginSuccess, loginFailed, logout, setUserDetails } = authSlice.actions;
+export const { loginSuccess, loginFailed, logout, setUserDetails, updateUserProfile } = authSlice.actions;
 export default authSlice.reducer;
