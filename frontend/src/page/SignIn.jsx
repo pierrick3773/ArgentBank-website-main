@@ -61,7 +61,7 @@ export function SignIn() {
             <label htmlFor="remember-me">Remember me</label>
             
           </div>
-          <span className="fail">TUTETROMPEGROSCON</span>
+          <span className="fail">Invalid Username or Password </span>
           <input className="sign-in-button" type="submit" value="Sign In"></input>
         </form>
       </section>
