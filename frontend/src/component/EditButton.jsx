@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUserInfo } from '../CAllAPI/UserInfoCall';
 import { updateUserProfile } from '../services/reducer';
+
 export function EditButton() {
   const [isEditing, setIsEditing] = useState(false);
   const [userName, setUserName] = useState('');
@@ -23,6 +24,7 @@ export function EditButton() {
 
   const handleSave = () => {
     dispatch(updateUserProfile({ userName }));
+    dispatch(fetchUserInfo()); // Appeler fetchUserInfo après updateUserProfile
     handleToggleEditForm();
   };
 

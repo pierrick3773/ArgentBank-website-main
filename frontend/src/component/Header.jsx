@@ -7,9 +7,13 @@ export function Header() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const userDetails = useSelector(state => state.auth.userDetails);
   const dispatch = useDispatch();
+
   const signOut = () => {
     dispatch(logout());
   };
+
+  const userName = userDetails ? userDetails.userName : '';
+
   return (
     <header>
       <nav className="main-nav">
@@ -24,7 +28,7 @@ export function Header() {
         <div className="userBlock">
           {isLoggedIn && (
             <>
-              <p className="userName">{userDetails?.payload[0].userName}</p>
+              <p className="userName">{userName}</p>
               <NavLink className="main-nav-item-sign-out" to="/" onClick={signOut}>
                 <i className="fa fa-user-circle"></i>
                 Sign Out
@@ -42,5 +46,7 @@ export function Header() {
     </header>
   );
 }
+
+
 
 

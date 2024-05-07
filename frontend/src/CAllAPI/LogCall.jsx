@@ -6,6 +6,8 @@ import { loginSuccess } from "../services/reducer";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const logCall = createAsyncThunk("user/login", async (credentials, thunkAPI) => {
+  const failMessage = document.querySelector('.fail');
+
   try {
     const response = await fetch(`${API_BASE_URL_}/user/login`, {
       method: "POST",
@@ -14,6 +16,7 @@ export const logCall = createAsyncThunk("user/login", async (credentials, thunkA
     });
 
     if (!response.ok) {
+      failMessage.style.display = 'flex'
       return thunkAPI.rejectWithValue("Email ou mot de passe incorrect");
     }
 

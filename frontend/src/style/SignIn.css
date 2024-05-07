@@ -68,3 +68,9 @@
   padding: 5px;
   font-size: 1.2rem;
 }
+
+
+.fail {
+  display: none; /* Par défaut, le message d'erreur est masqué */
+}
+

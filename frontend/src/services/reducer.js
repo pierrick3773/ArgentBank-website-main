@@ -33,9 +33,14 @@ const initialState = {
     setUserDetails: (state, action) => {
       state.userDetails = action.payload;
     },
-    updateUserProfile: (state, action ) => {
-      state.userDetails = action.payload;
+    updateUserProfile: (state, action) => {
+      const updatedUserDetails = {
+        ...state.userDetails,
+        userName: action.payload.userName
+      };
+      state.userDetails = updatedUserDetails;
     }
+    
   },
 });
 

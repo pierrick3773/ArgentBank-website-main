@@ -11,22 +11,27 @@ export function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
+  const [error, setError] = useState(null);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    dispatch(logCall({ email: username, password }))
-      .unwrap()
-      .then((token) => {
-        navigate("/Profile");
-        dispatch(fetchUserInfo(token)).then((data) => {
-          console.log(data); // Affiche les données récupérées dans la console
-          dispatch(setUserDetails(data)); // Met à jour l'état Redux avec les informations utilisateur
+  
+    try {
+      dispatch(logCall({ email: username, password }))
+        .unwrap()
+        .then((token) => {
+          navigate("/Profile");
+          dispatch(fetchUserInfo(token)).then((data) => {
+            console.log(data); // Affiche les données récupérées dans la console
+            dispatch(setUserDetails(data)); // Met à jour l'état Redux avec les informations utilisateur
+          });
         });
-        
-      });
+    } catch (error) {
+      setError(error.message); // Met à jour l'état local avec le message d'erreur
+    }
   };
+  
   return (
     <section className="main bg-dark">
       <section className="sign-in-content">
@@ -54,7 +59,9 @@ export function SignIn() {
           <div className="input-remember">
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
+            
           </div>
+          <span className="fail">TUTETROMPEGROSCON</span>
           <input className="sign-in-button" type="submit" value="Sign In"></input>
         </form>
       </section>
