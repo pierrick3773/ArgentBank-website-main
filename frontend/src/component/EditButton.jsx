@@ -24,7 +24,7 @@ export function EditButton() {
 
   const handleSave = () => {
     dispatch(updateUserProfile({ userName }));
-    dispatch(fetchUserInfo()); // Appeler fetchUserInfo après updateUserProfile
+    dispatch(fetchUserInfo()); 
     handleToggleEditForm();
   };
 

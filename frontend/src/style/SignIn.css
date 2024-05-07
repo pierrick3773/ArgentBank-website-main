@@ -72,5 +72,7 @@
 
 .fail {
   display: none; /* Par défaut, le message d'erreur est masqué */
+  justify-content: center;
+  padding-top: 6px;
 }
 
