@@ -39,6 +39,7 @@ const initialState = {
         userName: action.payload.userName
       };
       state.userDetails = updatedUserDetails;
+      return state; // retourner le nouveau state
     }
     
   },

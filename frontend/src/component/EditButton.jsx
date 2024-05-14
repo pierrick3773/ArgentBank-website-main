@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserInfo } from '../CAllAPI/UserInfoCall';
+import { fetchUserInfo, setUserDetails } from '../CAllAPI/UserInfoCall';
 import { updateUserProfile } from '../services/reducer';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 export function EditButton() {
   const [isEditing, setIsEditing] = useState(false);
@@ -10,9 +11,11 @@ export function EditButton() {
   const userDetails = useSelector((state) => state.auth.userDetails);
   const dispatch = useDispatch();
 
+  // Récupère les informations utilisateur lors du montage du composant
   useEffect(() => {
     dispatch(fetchUserInfo());
-  }, [dispatch]);
+    setUserName(userDetails?.userName || '');
+  }, [dispatch, userDetails]);
 
   const handleToggleEditForm = () => {
     setIsEditing(!isEditing);
@@ -22,11 +25,37 @@ export function EditButton() {
     setUserName(event.target.value);
   };
 
-  const handleSave = () => {
-    dispatch(updateUserProfile({ userName }));
-    dispatch(fetchUserInfo()); 
-    handleToggleEditForm();
+  // Met à jour le nom d'utilisateur dans la base de données et le state Redux
+  const handleSave = async () => {
+    try {
+      // Appelle l'action updateUserProfile et attend sa résolution
+      const resultAction = await dispatch(updateUserProfile({ userName }));
+      // Extrait la valeur renvoyée par updateUserProfile à l'aide d'unwrapResult
+      const updatedUserDetails = unwrapResult(resultAction);
+      console.log('User details after update:', updatedUserDetails);
+  
+      // Met à jour le state Redux avec les nouvelles informations utilisateur
+      const updatedUserDetailsWithUsername = { ...userDetails.payload[0], userName };
+      dispatch(setUserDetails(updatedUserDetailsWithUsername));
+  
+      // Ferme le formulaire d'édition
+      handleToggleEditForm();
+  
+      // Récupère les nouvelles informations utilisateur de l'API
+      setTimeout(async () => {
+        await dispatch(fetchUserInfo());
+      }, 1000);
+    } catch (error) {
+      console.error('Error updating user profile:', error);
+    }
   };
+  
+  
+
+  console.log('User details:', userDetails); // Ajouter cette ligne
+
+ 
+  
 
   return (
     <div className="edit">
@@ -37,7 +66,9 @@ export function EditButton() {
         <div className="inputName">
           <div className="inputContainer">
             <label htmlFor="userName">User name:</label>
-            <input type="text" id="userName" value={userName} onChange={handleUserNameChange} />
+            <input type="text" id="userName" value={userDetails?.userName} onChange={handleUserNameChange} />
+
+
           </div>
           <div className="inputContainer">
             <label htmlFor="firstName">First name:</label>

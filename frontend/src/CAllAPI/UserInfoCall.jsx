@@ -22,3 +22,8 @@ export const fetchUserInfo = createAsyncThunk("userInfo/fetchUserInfo", async ()
   const data = await response.json();
   return [data.body];
 });
+
+export const setUserDetails = (userDetails) => ({
+  type: "userInfo/setUserDetails",
+  payload: userDetails,
+});
