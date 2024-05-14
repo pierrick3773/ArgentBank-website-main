@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserInfo, setUserDetails } from '../CAllAPI/UserInfoCall';
+import { fetchUserInfo } from '../CAllAPI/UserInfoCall';
+import { PutUserName } from '../CAllAPI/userNameCall';
 import { updateUserProfile } from '../services/reducer';
-import { unwrapResult } from '@reduxjs/toolkit';
 
 export function EditButton() {
   const [isEditing, setIsEditing] = useState(false);
@@ -10,6 +10,7 @@ export function EditButton() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const userDetails = useSelector((state) => state.auth.userDetails);
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token); // Déplacer cette ligne ici
 
   // Récupère les informations utilisateur lors du montage du composant
   useEffect(() => {
@@ -28,32 +29,19 @@ export function EditButton() {
   // Met à jour le nom d'utilisateur dans la base de données et le state Redux
   const handleSave = async () => {
     try {
-      // Appelle l'action updateUserProfile et attend sa résolution
-      const resultAction = await dispatch(updateUserProfile({ userName }));
-      // Extrait la valeur renvoyée par updateUserProfile à l'aide d'unwrapResult
-      const updatedUserDetails = unwrapResult(resultAction);
-      console.log('User details after update:', updatedUserDetails);
-  
-      // Met à jour le state Redux avec les nouvelles informations utilisateur
-      const updatedUserDetailsWithUsername = { ...userDetails.payload[0], userName };
-      dispatch(setUserDetails(updatedUserDetailsWithUsername));
-  
-      // Ferme le formulaire d'édition
-      handleToggleEditForm();
-  
-      // Récupère les nouvelles informations utilisateur de l'API
-      setTimeout(async () => {
-        await dispatch(fetchUserInfo());
-      }, 1000);
+      const token = localStorage.getItem('token');
+      const result = await PutUserName(userName, token);
+      console.log("User profile updated:", result);
+      dispatch(updateUserProfile({ userName }));
+      dispatch(setUserName(userName)); // Mettre à jour le nom d'utilisateur dans le state Redux du composant Header
     } catch (error) {
-      console.error('Error updating user profile:', error);
+      console.error("Error updating user profile:", error);
     }
   };
   
   
 
-  console.log('User details:', userDetails); // Ajouter cette ligne
-
+  console.log('User details:', userDetails);
  
   
 
