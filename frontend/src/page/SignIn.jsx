@@ -30,7 +30,7 @@ export function SignIn() {
               lastName: data.payload[0].lastName,
             };
             dispatch(setUserDetails(userDetails));
-            console.log("Action setUserDetails dépêchée dans SignIn");
+            
           });
         });
     } catch (error) {
