@@ -10,7 +10,7 @@ export function EditButton() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const userDetails = useSelector((state) => state.auth.userDetails);
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token); // Déplacer cette ligne ici
+ 
 
   // Récupère les informations utilisateur lors du montage du composant
   useEffect(() => {
@@ -33,7 +33,7 @@ export function EditButton() {
       const result = await PutUserName(userName, token);
       console.log("User profile updated:", result);
       dispatch(updateUserProfile({ userName }));
-      console.log("Action updateUserProfile dépêchée dans EditButton");
+      
     } catch (error) {
       console.error("Error updating user profile:", error);
     }
