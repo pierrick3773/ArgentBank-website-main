@@ -33,7 +33,7 @@ export function EditButton() {
       const result = await PutUserName(userName, token);
       console.log("User profile updated:", result);
       dispatch(updateUserProfile({ userName }));
-      dispatch(setUserName(userName)); // Mettre à jour le nom d'utilisateur dans le state Redux du composant Header
+      console.log("Action updateUserProfile dépêchée dans EditButton");
     } catch (error) {
       console.error("Error updating user profile:", error);
     }
@@ -54,17 +54,18 @@ export function EditButton() {
         <div className="inputName">
           <div className="inputContainer">
             <label htmlFor="userName">User name:</label>
-            <input type="text" id="userName" value={userDetails?.userName} onChange={handleUserNameChange} />
+            <input type="text" id="userName" value={userName} onChange={handleUserNameChange} />
+
 
 
           </div>
           <div className="inputContainer">
             <label htmlFor="firstName">First name:</label>
-            <input className="readOnly" type="text" id="firstName" defaultValue={userDetails?.payload[0].firstName} />
+            <input className="readOnly" type="text" id="firstName" defaultValue={userDetails?.firstName} readOnly /> 
           </div>
           <div className="inputContainer">
             <label htmlFor="lastName">Last name:</label>
-            <input className="readOnly" type="text" id="lastName" defaultValue={userDetails?.payload[0].lastName}/>
+            <input className="readOnly" type="text" id="lastName" defaultValue={userDetails?.lastName} readOnly/>
           </div>
           <div className="inputButton">
             <button onClick={handleSave}>Save</button>

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { logCall } from "../CAllAPI/LogCall";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,8 +10,8 @@ export function SignIn() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.auth.token);
-  const [error, setError] = useState(null);
+  
+  const [setError] = useState(null);
 
 
   const handleSubmit = async (e) => {
@@ -23,14 +23,21 @@ export function SignIn() {
         .then((token) => {
           navigate("/Profile");
           dispatch(fetchUserInfo(token)).then((data) => {
-            console.log(data); // Affiche les données récupérées dans la console
-            dispatch(setUserDetails(data)); // Met à jour l'état Redux avec les informations utilisateur
+            console.log("Données récupérées dans SignIn :", data);
+            const userDetails = {
+              userName: data.payload[0].userName,
+              firstName: data.payload[0].firstName,
+              lastName: data.payload[0].lastName,
+            };
+            dispatch(setUserDetails(userDetails));
+            console.log("Action setUserDetails dépêchée dans SignIn");
           });
         });
     } catch (error) {
-      setError(error.message); // Met à jour l'état local avec le message d'erreur
+      setError(error.message);
     }
   };
+  
   
   return (
     <section className="main bg-dark">

@@ -5,17 +5,14 @@ import { logout } from "../services/reducer";
 
 export function Header() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const userDetails = useSelector(state => state.auth.userDetails);
-  const userName = useSelector(state => state.auth.userName); // Récupérer le nom d'utilisateur à partir du state Redux
   const dispatch = useDispatch();
 
   const signOut = () => {
     dispatch(logout());
   };
 
-  // const userName = userDetails?.payload?.[0]?.userName || '';
-
-
+  const userName = useSelector(state => state.auth.userDetails?.userName || '');
+  console.log("Nom d'utilisateur récupéré dans Header :", userName);
   return (
     <header>
       <nav className="main-nav">
