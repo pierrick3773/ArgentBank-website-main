@@ -6,7 +6,7 @@ const initialState = {
     token: null,
     loading: false,
     error: null,
-    isLoggedIn: false, // ajoutez cette propriété
+    isLoggedIn: false, 
   };
   
   const authSlice = createSlice({
@@ -16,7 +16,7 @@ const initialState = {
       loginSuccess: (state, action) => {
         state.user = action.payload;
         state.error = null;
-        state.isLoggedIn = true; // mettez à jour cette propriété
+        state.isLoggedIn = true; 
       },
     loginFailed: (state, action) => {
       state.user = null;
