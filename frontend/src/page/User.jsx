@@ -9,7 +9,7 @@ export function User() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
   if (!isLoggedIn) {
-    return <Navigate to="/" />;
+    return <Navigate to="/SignIn" />;
   }
 
   return (
