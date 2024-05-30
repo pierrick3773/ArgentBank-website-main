@@ -35,6 +35,7 @@ const initialState = {
     },
     updateUserProfile: (state, action) => {
       const updatedUserDetails = {
+        // utilisation de l'outil de propagation pour avoir setUserDetails mais avec le nouveau userName
         ...state.userDetails,
         userName: action.payload.userName
       };
